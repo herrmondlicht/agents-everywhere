@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  __SERVICE_NAME__:
+    build:
+      context: .
+      dockerfile: docker/agent/Dockerfile
+    user: "0:0"
+    environment:
+      - DOCKER_API_VERSION=${DOCKER_API_VERSION:-}
+      - AWS_PROFILE
+      - AWS_DEFAULT_REGION
+      - OPENAI_API_KEY
+      - CLAUDE_CODE_ALLOW_ROOT=1
+    volumes:
+      - .:/work
+      - __WORKSPACE_PATH__:/work/workspace
+      - __HOME_DIR__/.aws:/root/.aws:ro
+      - __HOME_DIR__/.config/gh:/root/.config/gh:ro
+      - __HOME_DIR__/.ssh:/root/.ssh:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+      - codex-auth:/root/.codex
+      - claude-auth:/root/.claude
+      - claude-code-config:/root/.config/claude-code
+    working_dir: /work/workspace
+    tty: true
+    stdin_open: true
+
+volumes:
+  codex-auth:
+  claude-auth:
+  claude-code-config:

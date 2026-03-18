@@ -1,0 +1,15 @@
+{
+  "name": "Project Workspace Agent",
+  "dockerComposeFile": ["../docker-compose.agent.yml"],
+  "service": "agent",
+  "workspaceFolder": "/work",
+  "shutdownAction": "stopCompose",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode-remote.remote-containers",
+        "openai.chatgpt"
+      ]
+    }
+  }
+}
