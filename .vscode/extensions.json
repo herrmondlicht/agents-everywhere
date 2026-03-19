@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "openai.chatgpt",
+    "anthropic.claude-code",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "ms-python.black-formatter",
+    "ms-vscode-remote.remote-containers"
+  ]
+}

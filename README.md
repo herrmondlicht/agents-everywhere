@@ -40,6 +40,24 @@ It also adds `~/.local/bin` to existing shell startup files when needed:
 
 If none of those files exist, the installer creates a sensible default file based on your current shell and adds the path there.
 
+## VS Code
+
+This repo is intended to work with `Attach to Running Container`, not `Reopen in Container`.
+
+Recommended flow:
+
+1. Start the project container:
+
+```bash
+start-agent example
+```
+
+2. In VS Code, run `Dev Containers: Attach to Running Container...`
+
+3. Select the project container and open `/work/workspace`
+
+Workspace extension recommendations for that attached session are tracked in [.vscode/extensions.json](/Users/gsilva/projects/codex-context/.vscode/extensions.json).
+
 ## First Run For A Project
 
 Initialize a project with its full workspace path:
