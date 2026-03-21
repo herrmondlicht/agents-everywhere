@@ -1,0 +1,16 @@
+{
+  "name": "Agent Workspace",
+  "workspaceFolder": "/work/workspace",
+  "shutdownAction": "none",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "anthropic.claude-code",
+        "openai.chatgpt",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-python.black-formatter"
+      ]
+    }
+  }
+}

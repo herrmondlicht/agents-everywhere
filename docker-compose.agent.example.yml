@@ -25,6 +25,7 @@ services:
       - codex-auth:/root/.codex
       - claude-auth:/root/.claude
       - claude-code-config:/root/.config/claude-code
+      - vscode-server:/root/.vscode-server
     working_dir: /work/workspace
     command: ["sleep", "infinity"]
     tty: true
@@ -35,3 +36,4 @@ volumes:
   codex-auth:
   claude-auth:
   claude-code-config:
+  vscode-server:

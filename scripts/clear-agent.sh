@@ -57,7 +57,16 @@ if [[ ! -f "$COMPOSE_FILE" ]]; then
   exit 1
 fi
 
-docker compose -p "$COMPOSE_PROJECT_NAME" -f "$COMPOSE_FILE" down --volumes --remove-orphans --rmi local
-rm -f "$COMPOSE_FILE"
+VOLUME_NAMES=(acli-config codex-auth claude-auth claude-code-config vscode-server)
+
+cleanup() {
+  rm -f "$COMPOSE_FILE"
+  for vol in "${VOLUME_NAMES[@]}"; do
+    docker volume rm "${COMPOSE_PROJECT_NAME}_${vol}" 2>/dev/null || true
+  done
+}
+trap cleanup EXIT
+
+docker compose -p "$COMPOSE_PROJECT_NAME" -f "$COMPOSE_FILE" down --volumes --remove-orphans --rmi local || true
 
 echo "Cleared agent resources for $COMPOSE_PROJECT_NAME"

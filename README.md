@@ -7,6 +7,7 @@ Small launcher repo for running a shared Docker agent image with either Codex or
 - Docker running locally
 - `git`
 - `python3`
+- A GitHub SSH key in `~/.ssh` authenticated with `github.com` (mandatory — the container will not start without it)
 
 ## Install Commands
 
@@ -56,7 +57,7 @@ start-agent example
 
 3. Select the project container and open `/work/workspace`
 
-Workspace extension recommendations for that attached session are tracked in [.vscode/extensions.json](/Users/gsilva/projects/codex-context/.vscode/extensions.json).
+On first attach, VS Code will automatically install the extensions defined in [.devcontainer/devcontainer.json](.devcontainer/devcontainer.json). These are persisted in a named Docker volume (`vscode-server`) so they survive container restarts.
 
 ## First Run For A Project
 
@@ -149,9 +150,11 @@ These files mount:
 - persistent Codex auth
 - persistent Jira ACLI auth/config
 - persistent Claude auth/config
+- persistent VS Code Server extensions (`vscode-server`)
 
 ## Notes
 
 - `config/projects.yml` is not used by the current launcher flow.
 - If you change the compose template or entrypoint behavior and need it to apply to an existing project container, stop and start that project again so Docker recreates the container.
 - Existing generated `docker-compose.<project>.local.yml` files will not pick up the new `sleep infinity` service command automatically. Regenerate them or add that `command` entry manually if you want the base agent container to stay running between launches.
+- Existing generated compose files will also be missing the `vscode-server` volume. Regenerate them or add the volume entry manually to persist VS Code Server extensions.

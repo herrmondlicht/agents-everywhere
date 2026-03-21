@@ -56,6 +56,13 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+if command -v gh >/dev/null 2>&1; then
+  if ! gh auth status >/dev/null 2>&1; then
+    echo "Error: gh CLI is not authenticated on the host. Run 'gh auth login' before starting the agent." >&2
+    exit 1
+  fi
+fi
+
 COMPOSE_FILE=""
 COMPOSE_PROJECT_NAME=""
 COMPOSE_RUN_ARGS=()

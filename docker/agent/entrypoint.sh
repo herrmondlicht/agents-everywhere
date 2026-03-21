@@ -63,6 +63,8 @@ mkdir -p "$ACLI_CONFIG_DIR"
 mkdir -p /root/.claude
 mkdir -p /root/.codex
 
+git config --global url."git@github.com:".insteadOf "https://github.com/"
+
 if [ ! -f "$ACLI_PERSISTED_CONFIG" ] && [ -f "$ACLI_HOST_CONFIG_DIR/jira_config.yaml" ]; then
   cp "$ACLI_HOST_CONFIG_DIR/jira_config.yaml" "$ACLI_PERSISTED_CONFIG"
 fi
